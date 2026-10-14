@@ -1,0 +1,282 @@
+/* Every selector starts with __ROOT__ (replaced by the mount id, e.g. #fd-assessment). */
+__ROOT__ {
+  --navy: #003663;
+  --navy-deep: #00223a;
+  --blue: #0a5ea8;
+  --coral: #f25f5c;
+  --coral-strong: #e8463f;
+  --red: #d7141a;
+  --ink: #0e1b2a;
+  --muted: #5b6878;
+  --line: #e3e8ef;
+  --paper: #f5f7fa;
+  --white: #ffffff;
+  --L1: #127a2c; --L2: #f2b33d; --L3: #e5703b; --L4: #d7141a;
+  display: block;
+  width: 100%;
+  font-family: 'Montserrat', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+  color: var(--white);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  text-align: left;
+}
+__ROOT__ *, __ROOT__ *::before, __ROOT__ *::after {
+  box-sizing: border-box; margin: 0; padding: 0; border: 0;
+  font: inherit; color: inherit; letter-spacing: normal; text-transform: none;
+  background: none; box-shadow: none; text-decoration: none; list-style: none;
+}
+__ROOT__ strong, __ROOT__ b { font-weight: 700; }
+__ROOT__ button { cursor: pointer; -webkit-appearance: none; appearance: none; line-height: 1.3; }
+__ROOT__ button:focus-visible, __ROOT__ a:focus-visible, __ROOT__ input:focus-visible {
+  outline: 3px solid rgba(242,95,92,.6); outline-offset: 2px;
+}
+__ROOT__ a { color: inherit; }
+
+/* ---------- Stage (dark, test screens) ---------- */
+__ROOT__ .fda-stage {
+  position: relative; overflow: hidden;
+  min-height: min(760px, 100svh);
+  background: radial-gradient(120% 90% at 100% 0%, #0a63b3 0%, #034a86 30%, #013561 60%, #01243c 100%);
+  display: flex; flex-direction: column;
+  border-radius: 0;
+}
+__ROOT__ .fda-stage::after {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(60% 50% at 0% 100%, rgba(242,95,92,.10), transparent 70%);
+}
+__ROOT__ .fda-top {
+  position: relative; z-index: 2;
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 18px 28px 0;
+}
+__ROOT__ .fda-logo { height: 38px; width: auto; display: block; opacity: .95; }
+__ROOT__ .fda-lang { display: flex; gap: 4px; background: rgba(255,255,255,.08); border-radius: 999px; padding: 3px; }
+__ROOT__ .fda-lang button {
+  font-size: 12px; font-weight: 600; padding: 6px 12px; border-radius: 999px; color: rgba(255,255,255,.75);
+}
+__ROOT__ .fda-lang button[aria-pressed="true"] { background: var(--white); color: var(--navy); }
+
+__ROOT__ .fda-progress { position: relative; z-index: 2; display: flex; gap: 4px; padding: 16px 28px 0; }
+__ROOT__ .fda-progress span { flex: 1; height: 4px; border-radius: 2px; background: rgba(255,255,255,.16); overflow: hidden; position: relative; }
+__ROOT__ .fda-progress span i { position: absolute; inset: 0 auto 0 0; width: 0; background: var(--coral); border-radius: 2px; transition: width .35s ease; }
+
+__ROOT__ .fda-body {
+  position: relative; z-index: 2; flex: 1;
+  display: flex; align-items: center; justify-content: center;
+  padding: 28px 28px 40px;
+}
+__ROOT__ .fda-screen { width: 100%; max-width: 760px; animation: fda-in .38s cubic-bezier(.2,.7,.2,1) both; }
+__ROOT__ .fda-screen.is-back { animation-name: fda-in-back; }
+@keyframes fda-in { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+@keyframes fda-in-back { from { opacity: 0; transform: translateY(-18px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { __ROOT__ .fda-screen { animation: none; } }
+
+__ROOT__ .fda-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 13px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--coral);
+}
+__ROOT__ .fda-eyebrow .fda-chip {
+  font-size: 11px; letter-spacing: .04em; background: var(--coral); color: var(--white);
+  padding: 2px 8px; border-radius: 4px;
+}
+__ROOT__ .fda-h1 { font-size: clamp(30px, 4.6vw, 48px); font-weight: 700; line-height: 1.12; margin-top: 14px; }
+__ROOT__ .fda-lead { font-size: clamp(16px, 1.8vw, 18px); color: rgba(255,255,255,.82); margin-top: 18px; max-width: 640px; }
+__ROOT__ .fda-list { margin-top: 22px; display: grid; gap: 10px; }
+__ROOT__ .fda-list li { display: flex; gap: 12px; align-items: flex-start; font-size: 16px; color: rgba(255,255,255,.9); }
+__ROOT__ .fda-list li::before {
+  content: ''; flex: 0 0 18px; height: 18px; margin-top: 2px; border-radius: 50%;
+  background: var(--coral) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 8.5l2.5 2.5L12 5.5' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/12px no-repeat;
+}
+__ROOT__ .fda-meta { margin-top: 26px; font-size: 13px; color: rgba(255,255,255,.6); }
+
+__ROOT__ .fda-actions { display: flex; align-items: center; gap: 14px; margin-top: 30px; flex-wrap: wrap; }
+__ROOT__ .fda-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  font-size: 16px; font-weight: 700; padding: 14px 26px; border-radius: 999px;
+  background: var(--coral); color: var(--white); transition: transform .15s ease, background .15s ease;
+}
+__ROOT__ .fda-btn:hover { background: var(--coral-strong); transform: translateY(-1px); }
+__ROOT__ .fda-btn[disabled] { opacity: .5; cursor: default; transform: none; }
+__ROOT__ .fda-btn--ghost { background: rgba(255,255,255,.1); color: var(--white); }
+__ROOT__ .fda-btn--ghost:hover { background: rgba(255,255,255,.18); }
+__ROOT__ .fda-hint { font-size: 12px; color: rgba(255,255,255,.55); }
+__ROOT__ .fda-link-btn { font-size: 14px; font-weight: 600; color: rgba(255,255,255,.7); padding: 6px 2px; }
+__ROOT__ .fda-link-btn:hover { color: var(--white); }
+
+/* question */
+__ROOT__ .fda-qhead { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+__ROOT__ .fda-count { font-size: 13px; font-weight: 600; color: rgba(255,255,255,.55); }
+__ROOT__ .fda-q { font-size: clamp(22px, 3.2vw, 32px); font-weight: 500; line-height: 1.3; margin-top: 16px; }
+__ROOT__ .fda-q strong { color: var(--coral); font-weight: 700; }
+__ROOT__ .fda-sub { font-size: 15px; color: rgba(255,255,255,.7); margin-top: 10px; }
+
+__ROOT__ .fda-scale { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-top: 30px; }
+__ROOT__ .fda-opt {
+  position: relative; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; gap: 10px;
+  padding: 16px 8px 14px; border-radius: 14px; text-align: center;
+  background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.14);
+  font-size: 13px; font-weight: 500; color: rgba(255,255,255,.88);
+  transition: background .15s ease, border-color .15s ease, transform .15s ease;
+}
+__ROOT__ .fda-opt:hover { background: rgba(255,255,255,.12); border-color: rgba(255,255,255,.3); }
+__ROOT__ .fda-opt .fda-num {
+  width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-size: 15px; font-weight: 700; border: 1.5px solid rgba(242,95,92,.7); color: var(--coral);
+}
+__ROOT__ .fda-opt[aria-checked="true"] { background: rgba(242,95,92,.18); border-color: var(--coral); }
+__ROOT__ .fda-opt[aria-checked="true"] .fda-num { background: var(--coral); color: var(--white); border-color: var(--coral); }
+__ROOT__ .fda-opt.is-pop { animation: fda-pop .28s ease; }
+@keyframes fda-pop { 50% { transform: scale(1.05); } }
+
+__ROOT__ .fda-choices { display: grid; gap: 10px; margin-top: 26px; max-width: 560px; }
+__ROOT__ .fda-choices--grid { grid-template-columns: 1fr 1fr; max-width: 640px; }
+__ROOT__ .fda-choice {
+  display: flex; align-items: center; gap: 14px; padding: 13px 16px; border-radius: 12px; text-align: left;
+  background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.14);
+  font-size: 16px; font-weight: 500; transition: background .15s ease, border-color .15s ease;
+}
+__ROOT__ .fda-choice:hover { background: rgba(255,255,255,.12); border-color: rgba(255,255,255,.3); }
+__ROOT__ .fda-choice .fda-key {
+  flex: 0 0 26px; height: 26px; border-radius: 6px; display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 700; border: 1px solid rgba(242,95,92,.7); color: var(--coral);
+}
+__ROOT__ .fda-choice[aria-checked="true"] { background: rgba(242,95,92,.18); border-color: var(--coral); }
+__ROOT__ .fda-choice[aria-checked="true"] .fda-key { background: var(--coral); color: var(--white); }
+
+__ROOT__ .fda-nav { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 28px; }
+__ROOT__ .fda-back {
+  display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 600; color: rgba(255,255,255,.7);
+  padding: 8px 2px; white-space: nowrap;
+}
+__ROOT__ .fda-back:hover { color: var(--white); }
+__ROOT__ .fda-back[hidden] { display: none; }
+
+/* gate form */
+__ROOT__ .fda-form { display: grid; gap: 16px; margin-top: 26px; max-width: 520px; }
+__ROOT__ .fda-field label { display: block; font-size: 13px; font-weight: 600; color: rgba(255,255,255,.8); margin-bottom: 6px; }
+__ROOT__ .fda-field input[type="text"], __ROOT__ .fda-field input[type="email"] {
+  width: 100%; font-size: 17px; padding: 12px 14px; border-radius: 10px;
+  background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.22); color: var(--white);
+}
+__ROOT__ .fda-field input::placeholder { color: rgba(255,255,255,.38); }
+__ROOT__ .fda-field input:focus { border-color: var(--coral); outline: none; background: rgba(255,255,255,.12); }
+__ROOT__ .fda-field.has-error input { border-color: #ff8a80; }
+__ROOT__ .fda-err { display: none; font-size: 13px; color: #ffb3ad; margin-top: 6px; }
+__ROOT__ .fda-field.has-error .fda-err { display: block; }
+__ROOT__ .fda-field .fda-consent { margin: 0; font-weight: 400; display: flex; gap: 12px; align-items: flex-start; font-size: 13px; color: rgba(255,255,255,.75); cursor: pointer; }
+__ROOT__ .fda-consent input { -webkit-appearance: none; appearance: none; flex: 0 0 20px; width: 20px; height: 20px; margin-top: 1px; border-radius: 5px; border: 1.5px solid rgba(255,255,255,.5); cursor: pointer; display: grid; place-content: center; }
+__ROOT__ .fda-consent input:checked { background: var(--coral); border-color: var(--coral); }
+__ROOT__ .fda-consent input:checked::after { content: ''; width: 10px; height: 6px; border-left: 2px solid #fff; border-bottom: 2px solid #fff; transform: rotate(-45deg) translate(1px,-1px); }
+__ROOT__ .fda-consent a { text-decoration: underline; }
+
+/* loading */
+__ROOT__ .fda-loading { display: flex; flex-direction: column; align-items: center; gap: 22px; text-align: center; }
+__ROOT__ .fda-spinner { width: 54px; height: 54px; border-radius: 50%; border: 4px solid rgba(255,255,255,.15); border-top-color: var(--coral); animation: fda-spin .9s linear infinite; }
+@keyframes fda-spin { to { transform: rotate(360deg); } }
+__ROOT__ .fda-error-box { margin-top: 18px; padding: 12px 14px; border-radius: 10px; background: rgba(255,90,80,.15); border: 1px solid rgba(255,138,128,.5); font-size: 14px; }
+
+/* ---------- Results (light) ---------- */
+__ROOT__ .fda-results { background: var(--paper); color: var(--ink); }
+__ROOT__ .fda-hero {
+  position: relative; overflow: hidden; color: var(--white);
+  background: radial-gradient(120% 120% at 100% 0%, #0a63b3 0%, #013561 55%, #01243c 100%);
+  padding: 22px 28px 56px;
+}
+__ROOT__ .fda-hero-in { max-width: 1040px; margin: 0 auto; }
+__ROOT__ .fda-hero-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+__ROOT__ .fda-hero-grid { display: grid; grid-template-columns: 1fr 260px; gap: 40px; align-items: center; margin-top: 40px; }
+__ROOT__ .fda-level-name { font-size: clamp(34px, 5vw, 54px); font-weight: 800; line-height: 1.05; margin-top: 12px; }
+__ROOT__ .fda-level-tag { display: inline-block; margin-top: 14px; font-size: 13px; font-weight: 700; padding: 5px 12px; border-radius: 999px; color: var(--white); }
+__ROOT__ .fda-level-sum { font-size: 18px; color: rgba(255,255,255,.88); margin-top: 16px; max-width: 560px; }
+__ROOT__ .fda-ring { position: relative; width: 240px; height: 240px; margin: 0 auto; }
+__ROOT__ .fda-ring svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+__ROOT__ .fda-ring-val { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+__ROOT__ .fda-ring-num { font-size: 64px; font-weight: 800; line-height: 1; }
+__ROOT__ .fda-ring-lbl { font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: rgba(255,255,255,.7); margin-top: 8px; max-width: 140px; }
+
+__ROOT__ .fda-wrap { max-width: 1040px; margin: -28px auto 0; padding: 0 20px 48px; position: relative; z-index: 2; display: grid; gap: 20px; }
+__ROOT__ .fda-card { background: var(--white); border-radius: 18px; padding: 30px; box-shadow: 0 1px 2px rgba(10,30,60,.05), 0 8px 28px rgba(10,30,60,.07); }
+__ROOT__ .fda-card h2 { font-size: 24px; font-weight: 700; color: var(--navy); line-height: 1.25; }
+__ROOT__ .fda-card h3 { font-size: 17px; font-weight: 700; color: var(--navy); }
+__ROOT__ .fda-card p { font-size: 16px; color: #2a3646; margin-top: 12px; }
+__ROOT__ .fda-card p strong { color: var(--navy); }
+__ROOT__ .fda-kicker { font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--red); }
+
+__ROOT__ .fda-gauge { margin-top: 22px; }
+__ROOT__ .fda-gauge-bar { position: relative; display: grid; grid-template-columns: repeat(4,1fr); gap: 4px; height: 14px; }
+__ROOT__ .fda-gauge-bar span { border-radius: 4px; opacity: .3; }
+__ROOT__ .fda-gauge-bar span.is-on { opacity: 1; }
+__ROOT__ .fda-gauge-mark { position: absolute; top: -8px; width: 4px; height: 30px; margin-left: -2px; border-radius: 2px; background: var(--ink); box-shadow: 0 0 0 3px var(--white); transition: left .8s cubic-bezier(.2,.7,.2,1); }
+__ROOT__ .fda-gauge-lbls { display: grid; grid-template-columns: repeat(4,1fr); gap: 4px; margin-top: 10px; font-size: 12px; font-weight: 600; color: var(--muted); }
+__ROOT__ .fda-gauge-lbls span.is-on { color: var(--ink); }
+__ROOT__ .fda-gauge-help { font-size: 13px; color: var(--muted); margin-top: 12px; }
+
+__ROOT__ .fda-watch { margin-top: 18px; padding: 16px 18px; border-left: 4px solid var(--red); background: #fdf1f1; border-radius: 0 10px 10px 0; font-size: 15px; color: #5a1a1c; }
+__ROOT__ .fda-watch strong { color: #8c0f13; }
+
+__ROOT__ .fda-dims { display: grid; gap: 14px; margin-top: 22px; }
+__ROOT__ .fda-dim { display: grid; grid-template-columns: 220px 1fr 160px; gap: 16px; align-items: center; padding: 14px 16px; border-radius: 12px; border: 1px solid var(--line); }
+__ROOT__ .fda-dim.is-top { border-color: var(--navy); background: #f2f6fb; }
+__ROOT__ .fda-dim-name { font-size: 15px; font-weight: 700; color: var(--navy); }
+__ROOT__ .fda-dim-flag { display: inline-block; margin-top: 4px; font-size: 11px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: var(--white); background: var(--navy); padding: 2px 8px; border-radius: 4px; }
+__ROOT__ .fda-dim-track { position: relative; height: 12px; background: #edf0f4; border-radius: 6px; overflow: hidden; }
+__ROOT__ .fda-dim-fill { position: absolute; inset: 0 auto 0 0; width: 0; border-radius: 6px; transition: width .9s cubic-bezier(.2,.7,.2,1); }
+__ROOT__ .fda-dim-score { font-size: 13px; font-weight: 600; color: var(--muted); text-align: right; }
+__ROOT__ .fda-dim-score b { font-size: 18px; color: var(--ink); }
+__ROOT__ .fda-dim-band { display: block; font-size: 12px; font-weight: 700; }
+__ROOT__ .fda-dim-read { grid-column: 1 / -1; font-size: 14px; color: #3c4858; margin-top: -4px; }
+__ROOT__ .fda-legend { display: grid; grid-template-columns: repeat(4,1fr); gap: 10px; margin-top: 18px; }
+__ROOT__ .fda-legend div { font-size: 12px; color: var(--muted); }
+__ROOT__ .fda-legend b { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--ink); }
+__ROOT__ .fda-legend i { width: 10px; height: 10px; border-radius: 3px; display: inline-block; }
+
+__ROOT__ .fda-steps { display: grid; gap: 14px; margin-top: 20px; counter-reset: fstep; }
+__ROOT__ .fda-steps li { display: grid; grid-template-columns: 40px 1fr; gap: 14px; }
+__ROOT__ .fda-steps li::before { counter-increment: fstep; content: counter(fstep); width: 36px; height: 36px; border-radius: 50%; background: var(--navy); color: var(--white); font-weight: 700; display: flex; align-items: center; justify-content: center; }
+__ROOT__ .fda-steps h3 { margin-top: 6px; }
+__ROOT__ .fda-steps p { margin-top: 4px; font-size: 15px; }
+
+__ROOT__ .fda-split { display: grid; grid-template-columns: 1.4fr 1fr; gap: 20px; }
+__ROOT__ .fda-session { background: var(--navy); color: var(--white); position: relative; overflow: hidden; }
+__ROOT__ .fda-session h2 { color: var(--white); margin-top: 8px; }
+__ROOT__ .fda-session p { color: rgba(255,255,255,.85); }
+__ROOT__ .fda-session .fda-kicker { color: var(--coral); }
+__ROOT__ .fda-session .fda-arrow { position: absolute; right: -10px; bottom: -14px; width: 140px; opacity: .14; }
+__ROOT__ .fda-pdf .fda-status { font-size: 14px; color: var(--muted); margin-top: 10px; }
+__ROOT__ .fda-btn--navy { background: var(--navy); }
+__ROOT__ .fda-btn--navy:hover { background: #00284a; }
+__ROOT__ .fda-btn--line { background: transparent; color: var(--navy); border: 1.5px solid var(--navy); }
+__ROOT__ .fda-btn--line:hover { background: #eef3f9; }
+__ROOT__ .fda-paid { border: 2px dashed #c9d3df; }
+__ROOT__ .fda-foot { text-align: center; padding: 6px 0 4px; }
+__ROOT__ .fda-foot button { font-size: 14px; font-weight: 600; color: var(--muted); text-decoration: underline; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 820px) {
+  __ROOT__ .fda-hero-grid { grid-template-columns: 1fr; gap: 26px; margin-top: 26px; }
+  __ROOT__ .fda-ring { width: 200px; height: 200px; }
+  __ROOT__ .fda-ring-num { font-size: 54px; }
+  __ROOT__ .fda-split { grid-template-columns: 1fr; }
+  __ROOT__ .fda-dim { grid-template-columns: 1fr auto; gap: 10px 14px; }
+  __ROOT__ .fda-dim-track { grid-column: 1 / -1; grid-row: 2; }
+  __ROOT__ .fda-dim-read { grid-row: 3; margin-top: 0; }
+}
+@media (max-width: 640px) {
+  __ROOT__ .fda-top { padding: 14px 16px 0; }
+  __ROOT__ .fda-logo { height: 24px; }
+  __ROOT__ .fda-progress { padding: 12px 16px 0; }
+  __ROOT__ .fda-body { padding: 22px 16px 28px; align-items: flex-start; }
+  __ROOT__ .fda-scale { grid-template-columns: 1fr; gap: 8px; margin-top: 22px; }
+  __ROOT__ .fda-opt { flex-direction: row; justify-content: flex-start; padding: 11px 14px; font-size: 15px; text-align: left; gap: 14px; }
+  __ROOT__ .fda-opt .fda-num { width: 30px; height: 30px; flex: 0 0 30px; font-size: 14px; }
+  __ROOT__ .fda-choices--grid { grid-template-columns: 1fr; }
+  __ROOT__ .fda-choice { font-size: 15px; padding: 11px 14px; }
+  __ROOT__ .fda-hint { display: none; }
+  __ROOT__ .fda-hero { padding: 16px 16px 48px; }
+  __ROOT__ .fda-wrap { padding: 0 12px 36px; gap: 14px; }
+  __ROOT__ .fda-card { padding: 22px 18px; border-radius: 14px; }
+  __ROOT__ .fda-card h2 { font-size: 21px; }
+  __ROOT__ .fda-legend { grid-template-columns: 1fr 1fr; }
+  __ROOT__ .fda-btn { width: 100%; }
+  __ROOT__ .fda-actions .fda-btn { width: auto; }
+}
