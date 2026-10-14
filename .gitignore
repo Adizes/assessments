@@ -1,0 +1,3 @@
+node_modules/
+founder-dependency/test/out/
+.DS_Store
